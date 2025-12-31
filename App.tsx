@@ -5,6 +5,7 @@ import { MultiStepForm } from './components/MultiStepForm';
 import { ResultsDashboard } from './components/ResultsDashboard';
 import { DocumentUpload } from './components/DocumentUpload';
 import { AdminPanel } from './components/AdminPanel';
+import { AdminLogin } from './components/AdminLogin';
 import { CheckCircle } from 'lucide-react';
 import { Button } from './components/ui/Button';
 
@@ -90,7 +91,16 @@ export default function App() {
 
   // Views
   if (view === AppView.LANDING) {
-    return <LandingPage onStart={startApplication} onAdminLogin={() => setView(AppView.ADMIN_DASHBOARD)} />;
+    return <LandingPage onStart={startApplication} onAdminLogin={() => setView(AppView.ADMIN_LOGIN)} />;
+  }
+
+  if (view === AppView.ADMIN_LOGIN) {
+    return (
+      <AdminLogin 
+        onLogin={() => setView(AppView.ADMIN_DASHBOARD)} 
+        onBack={() => setView(AppView.LANDING)} 
+      />
+    );
   }
 
   if (view === AppView.FORM) {

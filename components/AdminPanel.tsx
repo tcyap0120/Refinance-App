@@ -3,7 +3,7 @@ import { ClientData } from '../types';
 import { calculateEligibility } from '../services/calculations';
 import { generateClientCommunication } from '../services/geminiService';
 import { Button } from './ui/Button';
-import { Search, Mail, MessageCircle, FileText, CheckCircle, XCircle, Loader2 } from 'lucide-react';
+import { Search, Mail, MessageCircle, FileText, CheckCircle, XCircle, Loader2, Database } from 'lucide-react';
 
 interface Props {
   clients: ClientData[];
@@ -43,10 +43,16 @@ export const AdminPanel: React.FC<Props> = ({ clients, onUpdateStatus, onLogout 
   return (
     <div className="min-h-screen bg-slate-100 flex flex-col">
       <header className="bg-indigo-900 text-white px-6 py-4 shadow-lg flex justify-between items-center">
-        <div className="font-bold text-xl">RefiSmart Admin</div>
+        <div className="font-bold text-xl flex items-center gap-2">
+          RefiSmart Admin
+        </div>
         <div className="flex gap-4 items-center">
-          <span className="text-sm opacity-80">Administrator</span>
-          <Button variant="ghost" onClick={onLogout} className="text-white hover:bg-indigo-800">Logout</Button>
+          <div className="flex items-center gap-2 px-3 py-1 bg-indigo-800 rounded-full text-xs text-indigo-200">
+             <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+             System Online
+          </div>
+          <span className="text-sm opacity-80 border-r border-indigo-700 pr-4 mr-1">Administrator</span>
+          <Button variant="ghost" onClick={onLogout} className="text-white hover:bg-indigo-800 h-8 text-sm px-3">Logout</Button>
         </div>
       </header>
 
@@ -67,24 +73,31 @@ export const AdminPanel: React.FC<Props> = ({ clients, onUpdateStatus, onLogout 
             </div>
           </div>
           <div className="flex-grow overflow-y-auto">
-            {filteredClients.map(client => (
-              <div 
-                key={client.id}
-                onClick={() => { setSelectedClient(client); setGeneratedMessage(''); }}
-                className={`p-4 border-b border-slate-100 cursor-pointer hover:bg-slate-50 transition-colors ${selectedClient?.id === client.id ? 'bg-indigo-50 border-l-4 border-l-indigo-600' : ''}`}
-              >
-                <div className="flex justify-between items-start mb-1">
-                  <h4 className="font-semibold text-slate-800">{client.name}</h4>
-                  <span className={`text-xs px-2 py-1 rounded-full ${
-                    client.status === 'Approved' ? 'bg-green-100 text-green-700' :
-                    client.status === 'Rejected' ? 'bg-red-100 text-red-700' :
-                    'bg-yellow-100 text-yellow-700'
-                  }`}>{client.status}</span>
-                </div>
-                <p className="text-xs text-slate-500 mb-1">{client.goal}</p>
-                <p className="text-xs text-slate-400">{new Date(client.submittedAt).toLocaleDateString()}</p>
+            {filteredClients.length === 0 ? (
+              <div className="p-8 text-center text-slate-400">
+                <Database className="w-8 h-8 mx-auto mb-2 opacity-50" />
+                No records found.
               </div>
-            ))}
+            ) : (
+              filteredClients.map(client => (
+                <div 
+                  key={client.id}
+                  onClick={() => { setSelectedClient(client); setGeneratedMessage(''); }}
+                  className={`p-4 border-b border-slate-100 cursor-pointer hover:bg-slate-50 transition-colors ${selectedClient?.id === client.id ? 'bg-indigo-50 border-l-4 border-l-indigo-600' : ''}`}
+                >
+                  <div className="flex justify-between items-start mb-1">
+                    <h4 className="font-semibold text-slate-800">{client.name}</h4>
+                    <span className={`text-xs px-2 py-1 rounded-full ${
+                      client.status === 'Approved' ? 'bg-green-100 text-green-700' :
+                      client.status === 'Rejected' ? 'bg-red-100 text-red-700' :
+                      'bg-yellow-100 text-yellow-700'
+                    }`}>{client.status}</span>
+                  </div>
+                  <p className="text-xs text-slate-500 mb-1">{client.goal}</p>
+                  <p className="text-xs text-slate-400">{new Date(client.submittedAt).toLocaleDateString()}</p>
+                </div>
+              ))
+            )}
           </div>
         </aside>
 
