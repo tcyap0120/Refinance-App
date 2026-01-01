@@ -1,5 +1,5 @@
 import { GoogleGenAI } from "@google/genai";
-import { ClientData, CalculationResult } from "../types";
+import { ClientData, DecisionResult } from "../types";
 
 // NOTE: In a real production app, this call should happen on the backend to protect the API Key.
 // For this frontend demo, we assume the environment variable is available.
@@ -8,7 +8,7 @@ const apiKey = process.env.API_KEY || '';
 
 export const generateClientCommunication = async (
   client: ClientData, 
-  results: CalculationResult,
+  results: DecisionResult,
   type: 'EMAIL' | 'WHATSAPP'
 ): Promise<string> => {
   if (!apiKey) return "Error: API Key is missing.";
@@ -16,23 +16,28 @@ export const generateClientCommunication = async (
   const ai = new GoogleGenAI({ apiKey });
 
   const prompt = `
-    You are a professional mortgage refinance consultant.
+    You are a professional mortgage refinance banker.
     Write a ${type === 'WHATSAPP' ? 'short, friendly WhatsApp message' : 'formal email'} 
     to a client named ${client.name}.
 
-    Client Details:
-    - Goal: ${client.goal}
-    - Property Value: $${client.propertyValue.toLocaleString()}
-    - Current Loan Balance: $${client.currentLoanBalance.toLocaleString()}
+    Client Profile:
+    - Employment: ${client.employmentType}
+    - Goal: ${client.request.goal}
     
-    Refinance Analysis Results:
-    - Eligibility Confidence: ${results.confidence}
-    - Estimated Monthly Payment: $${results.monthlyPayment.toFixed(2)}
-    - Potential Monthly Savings: $${results.monthlySavings.toFixed(2)} (if positive)
-    - Cash Out Potential: $${results.cashOutAmount.toFixed(2)} (if applicable)
+    Banking Analysis Results:
+    - Status: ${results.approved ? 'APPROVED' : 'REJECTED'}
+    - DSR: ${results.dsr.toFixed(1)}% (Limit 70%)
+    - Stress DSR: ${results.stressDsr.toFixed(1)}% (Limit 75%)
+    - Net Disposable Income: $${results.ndi.toFixed(0)}
+    - Max Eligible Loan: $${results.maxEligibleLoan.toLocaleString()}
     
-    The message should summarize these findings and ask them to schedule a call to proceed. 
-    Do not include placeholders. Write the final ready-to-send text.
+    Rejection Reasons (if any): ${results.reason.join(', ')}
+
+    Instructions:
+    1. If Approved: Congratulate them, mention the estimated monthly saving ($${Math.round(results.monthlySavings)}) or cash out amount.
+    2. If Rejected: Politely explain why (e.g., DSR too high), and suggest a lower loan amount or adding a guarantor.
+    3. Be professional but empathetic.
+    4. Do not use placeholders.
   `;
 
   try {

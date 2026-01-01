@@ -22,8 +22,11 @@ export const DocumentUpload: React.FC<Props> = ({ onComplete }) => {
   const isComplete = Object.values(files).every(f => f !== null);
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center p-4">
-      <div className="max-w-xl w-full bg-white rounded-2xl shadow-xl p-8">
+    <div className="min-h-screen bg-theme-wave flex flex-col items-center justify-center p-4 relative">
+      {/* Background Overlay */}
+      <div className="absolute inset-0 z-0 bg-white/75 backdrop-blur-[1px]"></div>
+
+      <div className="max-w-xl w-full bg-white rounded-2xl shadow-xl p-8 relative z-10">
         <div className="text-center mb-8">
           <div className="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-4">
             <Lock className="w-8 h-8 text-indigo-600" />

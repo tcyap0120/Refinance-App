@@ -22,8 +22,12 @@ export const AdminLogin: React.FC<Props> = ({ onLogin, onBack }) => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4">
-      <div className="bg-white p-8 rounded-2xl shadow-xl max-w-md w-full fade-in">
+    <div className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden bg-theme-wave">
+      
+      {/* Background Overlay */}
+      <div className="absolute inset-0 z-0 bg-white/75 backdrop-blur-[2px]"></div>
+
+      <div className="bg-white/95 backdrop-blur-md p-8 rounded-2xl shadow-2xl max-w-md w-full fade-in border border-white/50 relative z-10">
         <button 
           onClick={onBack}
           className="text-slate-400 hover:text-slate-600 mb-6 flex items-center text-sm transition-colors"
@@ -32,12 +36,12 @@ export const AdminLogin: React.FC<Props> = ({ onLogin, onBack }) => {
         </button>
 
         <div className="text-center mb-8">
-          <div className="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-4">
+          <div className="w-16 h-16 bg-indigo-100 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-inner">
             <Lock className="w-8 h-8 text-indigo-600" />
           </div>
           <h2 className="text-2xl font-bold text-slate-800">Admin Access</h2>
           <p className="text-slate-500 mt-2">
-            Secure gateway for RefiSmart consultants.
+            Secure gateway for ApexRefi consultants.
           </p>
         </div>
 
@@ -60,7 +64,7 @@ export const AdminLogin: React.FC<Props> = ({ onLogin, onBack }) => {
             )}
           </div>
           
-          <Button variant="primary" fullWidth type="submit">
+          <Button variant="primary" fullWidth type="submit" className="shadow-lg shadow-indigo-500/20">
             Login to Dashboard
           </Button>
         </form>
