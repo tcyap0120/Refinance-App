@@ -11,7 +11,7 @@ export const HowItWorks: React.FC<Props> = ({ onBack }) => {
     {
       icon: <Calculator className="w-8 h-8 text-indigo-600" />,
       title: "1. Check Eligibility",
-      description: "Use our interactive form to input your income, commitments, and property details. Our system instantly calculates your Debt Service Ratio (DSR) and Max Loan Eligibility."
+      description: "Use our interactive form to input your income, commitments, and property details. Our system instantly estimates your Debt Service Ratio (DSR) and Max Loan Eligibility."
     },
     {
       icon: <FileText className="w-8 h-8 text-indigo-600" />,

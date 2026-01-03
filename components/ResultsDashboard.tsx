@@ -11,7 +11,7 @@ interface Props {
 }
 
 export const ResultsDashboard: React.FC<Props> = ({ clientData, onProceed }) => {
-  const [newRate, setNewRate] = useState(3.8);
+  const [newRate, setNewRate] = useState(3.55);
 
   // Recalculate based on slider
   const result = useMemo(() => 
@@ -72,11 +72,11 @@ export const ResultsDashboard: React.FC<Props> = ({ clientData, onProceed }) => 
              <div className="space-y-4">
                 <div className="flex justify-between items-center">
                   <span className="text-slate-600">Requested Amount</span>
-                  <span className="font-bold text-lg">${(clientData.property.outstandingBalance + (clientData.request.desiredCashOut || 0)).toLocaleString()}</span>
+                  <span className="font-bold text-lg">RM {(clientData.property.outstandingBalance + (clientData.request.desiredCashOut || 0)).toLocaleString()}</span>
                 </div>
                 <div className="flex justify-between items-center text-sm">
                   <span className="text-slate-500">Max Eligible Limit</span>
-                  <span className="font-semibold text-indigo-600">${Math.round(result.maxEligibleLoan).toLocaleString()}</span>
+                  <span className="font-semibold text-indigo-600">RM {Math.round(result.maxEligibleLoan).toLocaleString()}</span>
                 </div>
                 <div className="border-t border-slate-100 pt-4">
                    <label className="text-xs text-slate-400 block mb-2">Proposed Interest Rate: {newRate}%</label>
@@ -136,7 +136,7 @@ export const ResultsDashboard: React.FC<Props> = ({ clientData, onProceed }) => 
               </div>
               <div className="flex items-end gap-2">
                  <span className={`text-2xl font-bold ${result.ndi < 1000 ? 'text-red-500' : 'text-slate-800'}`}>
-                  ${Math.round(result.ndi).toLocaleString()}
+                  RM {Math.round(result.ndi).toLocaleString()}
                 </span>
               </div>
                <p className="text-xs text-slate-400 mt-2">
@@ -156,7 +156,7 @@ export const ResultsDashboard: React.FC<Props> = ({ clientData, onProceed }) => 
                    <tr>
                      <td className="py-3 text-slate-500">Gross Income (Declared)</td>
                      <td className="py-3 text-right font-medium">
-                       ${Object.values(clientData.income).reduce((a: number, b: number) => a + b, 0).toLocaleString()}
+                       RM {Object.values(clientData.income).reduce((a: number, b: number) => a + b, 0).toLocaleString()}
                      </td>
                    </tr>
                    <tr>
@@ -166,25 +166,25 @@ export const ResultsDashboard: React.FC<Props> = ({ clientData, onProceed }) => 
                        </span>
                      </td>
                      <td className="py-3 text-right font-bold text-indigo-700">
-                       ${Math.round(result.recognisedIncome).toLocaleString()}
+                       RM {Math.round(result.recognisedIncome).toLocaleString()}
                      </td>
                    </tr>
                    <tr>
                      <td className="py-3 text-slate-500">Existing Commitments (Non-Mortgage)</td>
                      <td className="py-3 text-right">
-                       ${Math.round(result.recognisedIncome * (result.dsr/100) - result.newMonthlyPayment).toLocaleString()}
+                       RM {Math.round(result.recognisedIncome * (result.dsr/100) - result.newMonthlyPayment).toLocaleString()}
                      </td>
                    </tr>
                    <tr className="bg-indigo-50/50">
                      <td className="py-3 pl-3 font-semibold text-indigo-900">New Mortgage Instalment</td>
                      <td className="py-3 pr-3 text-right font-bold text-indigo-900">
-                       ${Math.round(result.newMonthlyPayment).toLocaleString()}
+                       RM {Math.round(result.newMonthlyPayment).toLocaleString()}
                      </td>
                    </tr>
                    <tr>
                      <td className="py-3 text-slate-500">Stress Test Instalment (+1.75%)</td>
                      <td className="py-3 text-right text-slate-400">
-                       ${Math.round(result.stressMonthlyPayment).toLocaleString()}
+                       RM {Math.round(result.stressMonthlyPayment).toLocaleString()}
                      </td>
                    </tr>
                  </tbody>

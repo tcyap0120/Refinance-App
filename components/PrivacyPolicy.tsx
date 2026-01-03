@@ -87,7 +87,7 @@ export const PrivacyPolicy: React.FC<Props> = ({ onBack }) => {
 
             <h3 className="font-semibold text-slate-800 mt-4 mb-2">2.3 Interest Rates</h3>
             <p className="mb-4">
-              Interest rates displayed (e.g., "3.8%") are indicative based on current market offerings. Rates may fluctuate based on the Overnight Policy Rate (OPR) set by Bank Negara Malaysia and the applicant's individual risk profile.
+              Interest rates displayed (e.g., "3.55%") are indicative based on current market offerings. Rates may fluctuate based on the Overnight Policy Rate (OPR) set by Bank Negara Malaysia and the applicant's individual risk profile.
             </p>
           </section>
           

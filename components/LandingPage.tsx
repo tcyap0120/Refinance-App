@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from './ui/Button';
 import { RefiGoal, AppView } from '../types';
-import { ArrowRight, DollarSign, Percent, Building2 } from 'lucide-react';
+import { ArrowRight, DollarSign, Percent, Building2, Calculator } from 'lucide-react';
 
 interface LandingPageProps {
   onStart: (goal: RefiGoal) => void;
@@ -15,23 +15,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onStart, onNavigate })
       {/* Adjusted Overlay Transparency (75% white) */}
       <div className="absolute inset-0 z-0 bg-white/75 backdrop-blur-[2px]"></div>
 
-      <nav className="p-6 flex flex-col md:flex-row justify-between items-center relative z-10 gap-4">
-        <div className="text-2xl font-bold text-indigo-900 flex items-center gap-2 cursor-pointer" onClick={() => onNavigate(AppView.LANDING)}>
-          <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center text-white font-bold shadow-lg shadow-indigo-500/30">A</div>
-          <span className="tracking-tight">ApexRefi</span>
-        </div>
-        
-        <div className="flex flex-wrap items-center justify-center gap-2 md:gap-6 text-sm font-medium text-slate-600">
-          <button onClick={() => onNavigate(AppView.HOW_IT_WORKS)} className="hover:text-indigo-600 transition-colors">How It Works</button>
-          <button onClick={() => onNavigate(AppView.WHY_REFINANCE)} className="hover:text-indigo-600 transition-colors">Why Refinance</button>
-          <button onClick={() => onNavigate(AppView.CALCULATOR)} className="hover:text-indigo-600 transition-colors">Calculator</button>
-          <button onClick={() => onNavigate(AppView.FAQ)} className="hover:text-indigo-600 transition-colors">FAQ</button>
-        </div>
-
-        <Button variant="ghost" onClick={() => onNavigate(AppView.ADMIN_LOGIN)} className="hover:bg-white/50">Admin Login</Button>
-      </nav>
-
-      <main className="flex-grow flex flex-col items-center justify-center px-4 text-center mb-10 relative z-10">
+      <main className="flex-grow flex flex-col items-center justify-center px-4 text-center mb-10 relative z-10 pt-10">
         
         <h1 className="text-5xl md:text-7xl font-bold text-slate-900 mb-6 max-w-4xl leading-tight tracking-tight drop-shadow-sm">
           Your Partner in <br/> <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-700 to-blue-700">Smart Refinancing</span>
@@ -74,7 +58,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onStart, onNavigate })
               <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 group-hover:-rotate-3 transition-transform shadow-sm">
                 <Percent className="w-8 h-8 text-blue-600" />
               </div>
-              <h3 className="text-2xl font-bold text-slate-800 mb-3">Lower Interest Rate</h3>
+              <h3 className="text-2xl font-bold text-slate-800 mb-3">Save Interest</h3>
               <p className="text-slate-500 mb-6 h-12">
                  Secure a lower interest rate to save on total interest costs. 
               </p>
@@ -85,7 +69,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onStart, onNavigate })
           </div>
         </div>
 
-        <div className="mt-16 flex flex-wrap justify-center gap-6 text-sm font-medium text-slate-600 bg-white/60 backdrop-blur-md px-6 py-3 rounded-full shadow-lg border border-white/50">
+        <div className="mt-12 flex flex-wrap justify-center gap-6 text-sm font-medium text-slate-600 bg-white/60 backdrop-blur-md px-6 py-3 rounded-full shadow-lg border border-white/50">
            <span className="flex items-center gap-2"><Building2 className="w-4 h-4 text-indigo-500" /> Multiple Banks Compared</span>
            <span className="hidden md:inline w-1 h-1 bg-slate-300 rounded-full"></span>
            <span className="flex items-center gap-2">Best Rate Guarantee</span>
@@ -100,7 +84,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onStart, onNavigate })
           <span>|</span>
           <button onClick={() => onNavigate(AppView.PRIVACY)} className="hover:text-indigo-700 underline">Disclaimer</button>
         </div>
-        &copy; 2024 Apex Consultancy Sdn Bhd. All calculations are estimates. Terms and conditions apply.
+        &copy; 2026 Apex Consultancy Sdn Bhd. All calculations are estimates. Terms and conditions apply.
       </footer>
     </div>
   );

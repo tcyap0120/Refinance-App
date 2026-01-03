@@ -1,3 +1,4 @@
+
 import { GoogleGenAI } from "@google/genai";
 import { ClientData, DecisionResult } from "../types";
 
@@ -47,7 +48,9 @@ export const generateClientCommunication = async (
     });
     return response.text || "Could not generate message.";
   } catch (error) {
-    console.error("Gemini API Error:", error);
+    // Sanitize error object to prevent circular JSON error in console
+    const msg = error instanceof Error ? error.message : String(error);
+    console.error("Gemini API Error:", msg);
     return "Error generating communication. Please check API configuration.";
   }
 };

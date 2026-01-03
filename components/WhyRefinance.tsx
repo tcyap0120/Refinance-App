@@ -24,14 +24,14 @@ export const WhyRefinance: React.FC<Props> = ({ onBack }) => {
             <TrendingDown className="w-10 h-10 text-blue-500 mb-4" />
             <h3 className="text-xl font-bold mb-2">Lower Interest Rate</h3>
             <p className="text-slate-600 text-sm">
-              Mortgage rates fluctuate. If your current rate is above 4.2%, refinancing to ~3.8% can save you tens of thousands in interest over the loan tenure.
+              Mortgage rates fluctuate. If your current rate is above 4.0%, refinancing to ~3.55% can save you tens of thousands in interest over the loan tenure.
             </p>
           </div>
           <div className="bg-white p-6 rounded-xl shadow-md border-t-4 border-green-500">
             <PiggyBank className="w-10 h-10 text-green-500 mb-4" />
             <h3 className="text-xl font-bold mb-2">Debt Consolidation</h3>
             <p className="text-slate-600 text-sm">
-              Use "Cash Out" to pay off high-interest debts like credit cards (15-18%) using a cheap mortgage rate (3.8%). Drastically reduce monthly commitments.
+              Use "Cash Out" to pay off high-interest debts like credit cards (15-18%) using a cheap mortgage rate (3.55%). Drastically reduce monthly commitments.
             </p>
           </div>
           <div className="bg-white p-6 rounded-xl shadow-md border-t-4 border-indigo-500">
@@ -63,7 +63,7 @@ export const WhyRefinance: React.FC<Props> = ({ onBack }) => {
           <div className="bg-white/80 backdrop-blur p-8 rounded-2xl shadow-lg relative">
             <div className="text-5xl text-indigo-200 absolute top-4 left-4 font-serif">"</div>
             <p className="text-slate-700 italic mb-4 relative z-10">
-              My old loan was at 4.6%. ApexRefi found me a bank offering 3.85% with zero moving costs. The process was completely online and super fast.
+              My old loan was at 4.6%. ApexRefi found me a bank offering 3.60% with zero moving costs. The process was completely online and super fast.
             </p>
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 bg-slate-200 rounded-full flex items-center justify-center font-bold text-slate-500">JL</div>
